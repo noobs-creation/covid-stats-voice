@@ -136,22 +136,22 @@ fetched_country_list = covid_stats.get_list_of_countries()
 END_PHRASE = "stop"
 
 TOTAL_PATTERNS = {
-				re.compile("[\w\s]+ total [\w\s]+ cases"):covid_stats.fetch_total_cases_worldwide,
-				re.compile("[\w\s]+ total cases"): covid_stats.fetch_total_cases_worldwide,
-                re.compile("[\w\s]+ total [\w\s]+ deaths"): covid_stats.fetch_total_deaths_worldwide,
-                re.compile("[\w\s]+ total deaths"): covid_stats.fetch_total_deaths_worldwide,
-                re.compile("[\w\s]+ total [\w\s]+ recoveries"): covid_stats.fetch_total_recoveries_worldwide,
-                re.compile("[\w\s]+ total recoveries"): covid_stats.fetch_total_recoveries_worldwide,
-				re.compile("[\w\s]+ total [\w\s]+ recovery"): covid_stats.fetch_total_recoveries_worldwide,
-                re.compile("[\w\s]+ total recovery"): covid_stats.fetch_total_recoveries_worldwide
+				re.compile("[\w\s]+ total [\w\s]+ cases"):covid_stats.fetch_worldwide_cases,
+				re.compile("[\w\s]+ total cases"): covid_stats.fetch_worldwide_cases,
+                re.compile("[\w\s]+ total [\w\s]+ deaths"): covid_stats.fetch_worldwide_deaths,
+                re.compile("[\w\s]+ total deaths"): covid_stats.fetch_worldwide_deaths,
+                re.compile("[\w\s]+ total [\w\s]+ recoveries"): covid_stats.fetch_worldwide_recoveries,
+                re.compile("[\w\s]+ total recoveries"): covid_stats.fetch_worldwide_recoveries,
+				re.compile("[\w\s]+ total [\w\s]+ recovery"): covid_stats.fetch_worldwide_recoveries,
+                re.compile("[\w\s]+ total recovery"): covid_stats.fetch_worldwide_recoveries
 				}
 
 COUNTRY_PATTERNS = {
-                re.compile("[\w\s]+ recoveries [\w\s]+"): lambda country: covid_stats.get_country_data(country)['total_recoveries'],
-				re.compile("[\w\s]+ recovery [\w\s]+"): lambda country: covid_stats.get_country_data(country)['total_recoveries'],
-                re.compile("[\w\s]+ population [\w\s]+"): lambda country: covid_stats.get_country_data(country)['total_population'],
-				re.compile("[\w\s]+ cases [\w\s]+"): lambda country: covid_stats.get_country_data(country)['total_cases'],
-                re.compile("[\w\s]+ deaths [\w\s]+"): lambda country: covid_stats.get_country_data(country)['total_deaths'],
+                re.compile("[\w\s]+ recoveries [\w\s]+"): lambda country: covid_stats.fetch_country_stats(country)['total_recoveries'],
+				re.compile("[\w\s]+ recovery [\w\s]+"): lambda country: covid_stats.fetch_country_stats(country)['total_recoveries'],
+                re.compile("[\w\s]+ population [\w\s]+"): lambda country: covid_stats.fetch_country_stats(country)['total_population'],
+				re.compile("[\w\s]+ cases [\w\s]+"): lambda country: covid_stats.fetch_country_stats(country)['total_cases'],
+                re.compile("[\w\s]+ deaths [\w\s]+"): lambda country: covid_stats.fetch_country_stats(country)['total_deaths'],
 				}
 
 UPDATE_COMMAND = "update"
@@ -184,3 +184,6 @@ while True:
 	if recognized_text.find(END_PHRASE) != -1:  # stop loop
 		print("Exit")
 		break
+
+import sys
+sys.exit()
